@@ -37,7 +37,7 @@ function App() {
       <button onClick={addDonation}>기부하기</button>
 
       <p>
-        기부할 금액 : <string>{display}원</string>
+        기부할 금액 : <span>{display}원</span>
       </p>
 
       <h2>기부 내역</h2>
