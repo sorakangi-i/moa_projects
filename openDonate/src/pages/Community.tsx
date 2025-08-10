@@ -3,7 +3,6 @@ import { useAuth } from '../contexts/AuthContext';
 import {
   getAllPosts,
   createPost,
-  getPostsByCategory,
   incrementViews,
   incrementLikes,
 } from '../services/communityService';
@@ -92,6 +91,7 @@ function Community() {
         return null;
       }
     }
+    return null; // 조건을 만족하지 않을 때
   };
 
   // 게시글 클릭 시 조회수 증가

@@ -119,6 +119,7 @@ export function LocationProvider({ children }: { children: React.ReactNode }) {
         district,
         neighborhood,
         coordinates: [lat, lng] as [number, number],
+        name: `${district} ${neighborhood}`,
       };
 
       setLocation(locationInfo);

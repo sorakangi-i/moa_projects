@@ -52,12 +52,12 @@ function LocationMap({
   return (
     <div
       style={{ height, width: '100%', borderRadius: '8px', overflow: 'hidden' }}
+      onClick={handleMapClick}
     >
       <MapContainer
         center={center}
         zoom={13}
         style={{ height: '100%', width: '100%' }}
-        onClick={handleMapClick}
       >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
