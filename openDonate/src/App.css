@@ -1,5 +1,5 @@
-h1 {
-  color: blue;
-  font-size: 40px;
-  text-align: center;
+@import 'leaflet/dist/leaflet.css';
+
+.leaflet-default-icon-path {
+  background-image: url(https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png);
 }

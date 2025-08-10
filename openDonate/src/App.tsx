@@ -1,38 +1,39 @@
-import { useState } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { LocationProvider } from './contexts/LocationContext';
+import { AuthProvider } from './contexts/AuthContext';
 import './App.css';
+
+import Header from './components/Header';
+import Footer from './components/Footer';
 import Home from './pages/Home';
 import Login from './pages/Login';
-import BottomNavigation from './components/BottomNavigation';
+import DonateCenter from './pages/DonateCenter';
+import Community from './pages/Community';
+import MyPage from './pages/MyPage';
 
 function App() {
-  // 현재 어떤 페이지를 보고 있는지 기억하는 변수
-  const [currentPage, setCurrentPage] = useState('home');
-
-  // 페이지 바꾸는 함수
-  const handlePageChange = (page: string) => {
-    setCurrentPage(page);
-  };
-
-  // 어떤 페이지를 보여줄지 결정하는 함수
-  const renderPage = () => {
-    if (currentPage === 'home') {
-      return <Home />;
-    } else if (currentPage === 'login') {
-      return <Login />;
-    }
-  };
-
   return (
-    <div style={{ paddingBottom: '80px' }}>
-      {/* 선택된 페이지 보여주기 */}
-      {renderPage()}
-
-      {/* 하단 네비게이션 */}
-      <BottomNavigation
-        currentPage={currentPage}
-        onPageChange={handlePageChange}
-      />
-    </div>
+    <AuthProvider>
+      <LocationProvider>
+        <BrowserRouter>
+          <div className="flex flex-col ">
+            <Header />
+            <main className="w-2xl mx-auto p-8">
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/donate-center" element={<DonateCenter />} />
+                <Route path="/community" element={<Community />} />
+                <Route path="/mypage" element={<MyPage />} />
+              </Routes>
+            </main>
+            <div className="w-2xl mx-auto p-8 bg-gray-500">
+              <Footer />
+            </div>
+          </div>
+        </BrowserRouter>
+      </LocationProvider>
+    </AuthProvider>
   );
 }
 
