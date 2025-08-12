@@ -15,6 +15,7 @@ export interface LatestPost {
   content: string;
   date: string;
   isNew: boolean;
+  author: string; // 작성자
 }
 
 export interface DonationCenter {
@@ -28,6 +29,7 @@ export interface DonationCenter {
   coordinates: LatLngExpression; // 좌표
   description: string; // 설명
   imageUrl: string; // 이미지 주소
+  phone: string; // 연락처
   categories: string[]; // 기부 카테고리들
   latestPost: LatestPost | null; // 최신 글 정보
 }

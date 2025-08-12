@@ -13,12 +13,14 @@ export const donationCenters: DonationCenter[] = [
     description: '강남구 지역 주민을 위한 복지 서비스',
     imageUrl: '/images/center1.jpg',
     categories: ['아동/청소년', '어르신', '가족'],
+    phone: '02-1234-5678',
     latestPost: {
       title: '2024년 1월 기부 현황 보고',
       content:
         '이번 달에는 총 150명의 어린이들이 따뜻한 겨울을 보낼 수 있도록 도움을 받았습니다.',
       date: '2024-01-15',
       isNew: true,
+      author: '희망나눔 복지관',
     },
   },
   {
@@ -33,12 +35,14 @@ export const donationCenters: DonationCenter[] = [
     description: '서초구 지역 기부 활동 지원',
     imageUrl: '/images/center2.jpg',
     categories: ['지구촌', '환경'],
+    phone: '02-2345-6789',
     latestPost: {
       title: '환경 보호 캠페인 성과',
       content:
         '지구촌 환경 보호를 위한 나무 심기 캠페인이 성공적으로 완료되었습니다.',
       date: '2024-01-10',
       isNew: false,
+      author: '서초구 기부센터',
     },
   },
   {
@@ -53,11 +57,13 @@ export const donationCenters: DonationCenter[] = [
     description: '마포구 지역 후원 활동',
     imageUrl: '/images/center3.jpg',
     categories: ['장애인', '동물'],
+    phone: '02-3456-7890',
     latestPost: {
       title: '반려동물 입양 성사',
       content: '이번 주에 5마리의 반려동물이 새로운 가족을 찾았습니다.',
       date: '2024-01-18',
       isNew: true,
+      author: '마포구 후원센터',
     },
   },
   {
@@ -71,6 +77,7 @@ export const donationCenters: DonationCenter[] = [
     coordinates: [37.5704, 126.991],
     description: '종로구 지역 기부 활동',
     imageUrl: '/images/center4.jpg',
+    phone: '02-4567-8901',
     categories: ['기타'],
     latestPost: null,
   },
@@ -86,12 +93,14 @@ export const donationCenters: DonationCenter[] = [
     description: '북구 지역 주민을 위한 복지 서비스',
     imageUrl: '/images/center5.jpg',
     categories: ['아동/청소년', '어르신'],
+    phone: '062-123-4567',
     latestPost: {
       title: '어르신 봉사활동 후기',
       content:
         '지난 주에 진행된 어르신 봉사활동에서 많은 분들이 감사 인사를 전해주셨습니다.',
       date: '2024-01-20',
       isNew: true,
+      author: '북구 사회복지관',
     },
   },
   {
@@ -105,6 +114,7 @@ export const donationCenters: DonationCenter[] = [
     coordinates: [35.1689, 126.8723],
     description: '북구 지역 기부 활동 지원',
     imageUrl: '/images/center6.jpg',
+    phone: '062-234-5678',
     categories: ['가족', '환경'],
     latestPost: {
       title: '가족 지원 프로그램 안내',
@@ -112,6 +122,7 @@ export const donationCenters: DonationCenter[] = [
         '새로운 가족 지원 프로그램이 시작되었습니다. 많은 관심 부탁드립니다.',
       date: '2024-01-12',
       isNew: false,
+      author: '북구 기부센터',
     },
   },
 ];

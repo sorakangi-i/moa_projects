@@ -1,13 +1,6 @@
 import { useState, useMemo } from 'react';
 import { format } from 'date-fns';
 import { ko } from 'date-fns/locale'; // 한국어 로케일
-import { Calendar } from '../components/ui/calendar';
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '../components/ui/popover';
-import { Button } from '../components/ui/button';
 import {
   Card,
   CardContent,
@@ -54,29 +47,15 @@ const mockDonations: Donation[] = [
 
 function MyPage() {
   // 기부 내역 상태 관리 (초기값은 목업 데이터)
-  const [donations, setDonations] = useState<Donation[]>(mockDonations);
-  // 선택된 날짜 범위 상태
-  const [dateRange, setDateRange] = useState<{ from?: Date; to?: Date }>({});
+  const [donations] = useState<Donation[]>(mockDonations);
 
   // 총 기부 금액 계산 (선택된 기간에 따라 재계산)
   const totalAmount = useMemo(() => {
     return donations.reduce((sum, donation) => sum + donation.amount, 0);
   }, [donations]);
 
-  // 날짜 범위에 따라 필터링된 기부 목록
-  const filteredDonations = useMemo(() => {
-    if (!dateRange.from && !dateRange.to) {
-      return donations;
-    }
-
-    return donations.filter((donation) => {
-      const donationDate = donation.date.getTime();
-      const fromTime = dateRange.from?.setHours(0, 0, 0, 0) || -Infinity;
-      const toTime = dateRange.to?.setHours(23, 59, 59, 999) || Infinity;
-
-      return donationDate >= fromTime && donationDate <= toTime;
-    });
-  }, [donations, dateRange]);
+  // 필터링된 기부 목록 (현재는 모든 기부 내역 표시)
+  const filteredDonations = donations;
 
   return (
     <div className="container mx-auto p-6 max-w-4xl">
@@ -100,39 +79,6 @@ function MyPage() {
 
       <div className="flex items-center justify-between mb-4">
         <h3 className="text-xl font-semibold text-gray-800">내 기부 목록</h3>
-        {/* 날짜 선택 팝오버 */}
-        <Popover>
-          <PopoverTrigger asChild>
-            <Button
-              variant="outline"
-              className="w-auto justify-start text-left font-normal"
-            >
-              {dateRange.from ? (
-                dateRange.to ? (
-                  `${format(dateRange.from, 'PPP', { locale: ko })} - ${format(
-                    dateRange.to,
-                    'PPP',
-                    { locale: ko }
-                  )}`
-                ) : (
-                  format(dateRange.from, 'PPP', { locale: ko })
-                )
-              ) : (
-                <span>기간 선택</span>
-              )}
-            </Button>
-          </PopoverTrigger>
-          <PopoverContent className="w-auto p-0">
-            <Calendar
-              initialFocus
-              mode="range"
-              selected={dateRange}
-              onSelect={setDateRange}
-              numberOfMonths={2}
-              locale={ko}
-            />
-          </PopoverContent>
-        </Popover>
       </div>
 
       <Separator className="mb-4" />

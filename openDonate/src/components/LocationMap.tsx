@@ -1,6 +1,7 @@
 import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import { useLocation } from '../contexts/LocationContext';
 import { donationCenters } from '../data/donationCenters';
+import type { DonationCenter } from '../types/location';
 import L from 'leaflet';
 
 // 마커 아이콘 설정 (React에서 필요)
@@ -22,20 +23,6 @@ function MapUpdater({ center }: { center: [number, number] }) {
   return null;
 }
 
-interface DonationCenter {
-  id: string;
-  name: string;
-  address: string;
-  district: string;
-  neighborhood: string;
-  latitude: number;
-  longitude: number;
-  coordinates: [number, number];
-  description: string;
-  imageUrl: string;
-  categories: string[];
-}
-
 interface LocationMapProps {
   height?: string;
   showCenters?: boolean;
@@ -47,9 +34,8 @@ function LocationMap({
   height = '400px',
   showCenters = true,
   centers,
-  onLocationSelect,
 }: LocationMapProps) {
-  const { location, setCustomLocationByCoords } = useLocation();
+  const { location } = useLocation();
 
   // 기본 중심점 (서울시청)
   const defaultCenter: [number, number] = [37.5665, 127.0018];
@@ -60,19 +46,9 @@ function LocationMap({
   // 표시할 기부 센터들 결정
   const centersToShow = centers || (showCenters ? donationCenters : []);
 
-  // 지도 클릭 시 위치 설정
-  const handleMapClick = (e: { latlng: { lat: number; lng: number } }) => {
-    if (onLocationSelect) {
-      onLocationSelect(e.latlng.lat, e.latlng.lng);
-    } else {
-      setCustomLocationByCoords(e.latlng.lat, e.latlng.lng);
-    }
-  };
-
   return (
     <div
       style={{ height, width: '100%', borderRadius: '8px', overflow: 'hidden' }}
-      onClick={handleMapClick}
     >
       <MapContainer
         center={center}

@@ -40,13 +40,16 @@ function LocationModal({ isOpen, onClose }: LocationModalProps) {
   };
 
   const handleAddressSelect = (address: AddressResult) => {
-    const dongName = extractDongFromAddress(address.address_name);
     const district = extractDistrictFromAddress(address.address_name);
 
     setCustomLocation({
       name: address.address_name,
       district: district,
       coordinates: [parseFloat(address.y), parseFloat(address.x)],
+      latitude: parseFloat(address.y),
+      longitude: parseFloat(address.x),
+      address: address.address_name,
+      neighborhood: extractDongFromAddress(address.address_name),
     });
 
     onClose();

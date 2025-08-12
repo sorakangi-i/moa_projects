@@ -7,11 +7,7 @@ import LocationMap from './LocationMap';
 
 type ViewMode = 'list' | 'map';
 
-interface DonationCentersViewProps {
-  onLocationClick?: () => void;
-}
-
-function DonationCentersView({ onLocationClick }: DonationCentersViewProps) {
+function DonationCentersView() {
   const { location, requestLocation } = useLocation();
   const { user } = useAuth();
   const [viewMode, setViewMode] = useState<ViewMode>('list');
@@ -31,7 +27,7 @@ function DonationCentersView({ onLocationClick }: DonationCentersViewProps) {
   };
 
   // 모의 데이터 (나중에 실제 데이터로 교체)
-  const getMockDonationData = (centerId: string) => ({
+  const getMockDonationData = () => ({
     totalAmount: Math.floor(Math.random() * 10000000) + 1000000, // 100만원 ~ 1000만원
     myAmount: Math.floor(Math.random() * 100000) + 10000, // 1만원 ~ 10만원
   });
@@ -117,7 +113,7 @@ function DonationCentersView({ onLocationClick }: DonationCentersViewProps) {
             // 리스트 뷰
             <div className="space-y-4">
               {localCenters.map((center) => {
-                const donationData = getMockDonationData(center.id);
+                const donationData = getMockDonationData();
                 return (
                   <div
                     key={center.id}
