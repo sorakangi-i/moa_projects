@@ -6,7 +6,8 @@ interface LocationContextType {
   loading: boolean;
   error: string | null;
   requestLocation: () => Promise<void>;
-  setCustomLocation: (lat: number, lng: number) => Promise<void>;
+  setCustomLocation: (locationInfo: LocationInfo) => void;
+  setCustomLocationByCoords: (lat: number, lng: number) => Promise<void>;
 }
 
 const LocationContext = createContext<LocationContextType | undefined>(
@@ -97,7 +98,7 @@ export function LocationProvider({ children }: { children: React.ReactNode }) {
       );
 
       const { latitude, longitude } = position.coords;
-      await setCustomLocation(latitude, longitude);
+      await setCustomLocationByCoords(latitude, longitude);
     } catch (error) {
       console.error('위치 가져오기 실패:', error);
       setError('위치를 가져올 수 없습니다. 인터넷 연결을 확인해주세요.');
@@ -106,8 +107,14 @@ export function LocationProvider({ children }: { children: React.ReactNode }) {
     }
   };
 
-  // 사용자가 직접 위치 설정
-  const setCustomLocation = async (lat: number, lng: number) => {
+  // 사용자가 직접 위치 설정 (LocationInfo 객체로)
+  const setCustomLocation = (locationInfo: LocationInfo) => {
+    setLocation(locationInfo);
+    localStorage.setItem('userLocation', JSON.stringify(locationInfo));
+  };
+
+  // 사용자가 직접 위치 설정 (좌표로)
+  const setCustomLocationByCoords = async (lat: number, lng: number) => {
     try {
       const address = await getAddressFromCoords(lat, lng);
       const { district, neighborhood } = extractDistrictInfo(address);
@@ -152,6 +159,7 @@ export function LocationProvider({ children }: { children: React.ReactNode }) {
     error,
     requestLocation,
     setCustomLocation,
+    setCustomLocationByCoords,
   };
 
   return (

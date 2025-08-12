@@ -3,13 +3,12 @@ import { getAuth, GoogleAuthProvider } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore'; // DB 연결과 초기화
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyBWEoAQFUtp3bKzionr24gY-A2019fW0gE',
-  authDomain: 'moa-projects-8618b.firebaseapp.com',
-  projectId: 'moa-projects-8618b',
-  storageBucket: 'moa-projects-8618b.firebasestorage.app',
-  messagingSenderId: '579233006501',
-  appId: '1:579233006501:web:70a0abd8dd219879f51e4c',
-  // measurementId는 없어도 로그인은 됨
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
 };
 
 const app = initializeApp(firebaseConfig);

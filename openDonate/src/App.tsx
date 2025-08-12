@@ -8,7 +8,10 @@ import Footer from './components/Footer';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import DonateCenter from './pages/DonateCenter';
+import DonateCenterDetail from './pages/DonateCenterDetail';
 import Community from './pages/Community';
+import CommunityDetail from './pages/CommunityDetail';
+import CommunityWrite from './pages/CommunityWrite';
 import MyPage from './pages/MyPage';
 
 function App() {
@@ -18,18 +21,22 @@ function App() {
         <BrowserRouter>
           <div className="flex flex-col ">
             <Header />
-            <main className="w-2xl mx-auto p-8">
+            <main className="flex-1">
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/donate-center" element={<DonateCenter />} />
+                <Route
+                  path="/donate-center-detail/:id"
+                  element={<DonateCenterDetail />}
+                />
                 <Route path="/community" element={<Community />} />
+                <Route path="/community/:id" element={<CommunityDetail />} />
+                <Route path="/community/write" element={<CommunityWrite />} />
                 <Route path="/mypage" element={<MyPage />} />
               </Routes>
             </main>
-            <div className="w-2xl mx-auto p-8 bg-gray-500">
-              <Footer />
-            </div>
+            <Footer />
           </div>
         </BrowserRouter>
       </LocationProvider>

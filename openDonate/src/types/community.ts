@@ -15,7 +15,8 @@ export interface CommunityPost {
   isPinned?: boolean; // 고정 게시글 여부
   views: number; // 조회수
   likes: number; // 좋아요 수
-  comments: number; // 댓글 수
+  comments: Comment[]; // 댓글 목록
+  commentCount: number; // 댓글 수
 }
 
 export interface Comment {
